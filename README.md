@@ -1,5 +1,5 @@
 AFTER:-
-[image alt] (https://github.com/harshivvaish/fossee-task1/blob/main/after%20dark%20mode.png?raw=true)
+|[image alt] (https://github.com/harshivvaish/fossee-task1/blob/main/after%20dark%20mode.png?raw=true)
 
 # fossee-task1
 in this i have completed first task for fossee internship
