@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FOSSEE Student Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" type="text/css"/>
+    <style>
+        body {
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            background-color: #f4f8fb;
+            padding-top: 80px;
+            margin: 0;
+            transition: background 0.3s, color 0.3s;
+        }
+        .navbar {
+            background: linear-gradient(90deg, #1976d2 0%, #26a69a 100%);
+            box-shadow: 0 2px 8px rgba(25, 118, 210, .12);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .nav-link {
+            color: #e3f2fd !important;
+        }
+        .nav-link:hover {
+            color: #fff !important;
+        }
+        .notif-bell {
+            position: relative;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+        }
+        .notif-bell .badge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: #ff5252;
+            color: #fff;
+            font-size: 0.8rem;
+            border-radius: 50%;
+            padding: 3px 7px;
+        }
+        .profile-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: stretch;
+            margin: 2rem auto 1rem auto;
+            max-width: 1100px;
+        }
+        .profile-card {
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 4px 16px rgba(25, 118, 210, .12);
+            padding: 2rem 1.5rem;
+            min-width: 260px;
+            max-width: 320px;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .profile-card img {
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(25, 118, 210, .15);
+        }
+        .progress-card {
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 4px 16px rgba(38, 166, 154, .12);
+            padding: 2rem 1.5rem;
+            min-width: 260px;
+            max-width: 500px;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        .progress {
+            height: 28px;
+            background: #e3f2fd;
+            border-radius: 1rem;
+        }
+        .progress-bar {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        .dark-toggle-btn {
+            height: 48px;
+            width: 48px;
+            border-radius: 50%;
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            box-shadow: 0 2px 8px rgba(25, 118, 210, .15);
+            font-size: 1.5rem;
+            margin-left: 1rem;
+            transition: background 0.3s;
+        }
+        .dark-toggle-btn.active {
+            background: #222;
+            color: #ffd600;
+        }
+        .quick-links {
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 2px 8px rgba(25, 118, 210, .08);
+            padding: 2rem 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quick-links .btn {
+            margin: .5rem .25rem;
+            min-width: 120px;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(25, 118, 210, .08);
+            transition: transform 0.2s;
+        }
+        .quick-links .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+        }
+        .base-content {
+            background: #fff;
+            padding: 2rem 1.5rem;
+            margin: 1rem auto;
+            border-radius: 1rem;
+            max-width: 1100px;
+            box-shadow: 0 2px 8px rgba(25, 118, 210, .08);
+        }
+        .announcement-board {
+            margin-top: 2rem;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .alert {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(25, 118, 210, .08);
+        }
+        .events-board {
+            background: #fff;
+            border-radius: 1rem;
+            padding: 2rem 1.5rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 16px rgba(38, 166, 154, .12);
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .event-title {
+            font-weight: 600;
+            color: #1976d2;
+        }
+        .news-board {
+            background: #fff;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 16px rgba(25, 118, 210, .12);
+            font-size: 1.25rem;
+            transition: box-shadow 0.3s;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .news-board:hover {
+            box-shadow: 0 8px 24px rgba(25, 118, 210, .18);
+        }
+        .news-item {
+            border-bottom: 1px solid #eee;
+            padding: 1.25rem 0;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        .news-item.interactive-news:hover {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        .feedback-btn {
+            margin: 2rem auto 0 auto;
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(38, 166, 154, .12);
+        }
+        footer {
+            background: linear-gradient(90deg, #1976d2 0%, #26a69a 100%);
+            color: #e3f2fd;
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+            border-radius: 1rem 1rem 0 0;
+            box-shadow: 0 -2px 8px rgba(25, 118, 210, .08);
+        }
+        footer a {
+            color: #e3f2fd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        footer a:hover {
+            color: #fff;
+        }
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: none;
+            cursor: pointer;
+            box-shadow: 0 3px 8px rgba(25, 118, 210, .3);
+            font-size: 1.5rem;
+            z-index: 1000;
+        }
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #181a1b;
+            color: #e3f2fd;
+        }
+        body.dark-mode .navbar, body.dark-mode footer {
+            background: #222 !important;
+            color: #ffd600 !important;
+        }
+        body.dark-mode .profile-card,
+        body.dark-mode .progress-card,
+        body.dark-mode .quick-links,
+        body.dark-mode .base-content,
+        body.dark-mode .announcement-board,
+        body.dark-mode .events-board,
+        body.dark-mode .news-board {
+            background: #23272b !important;
+            color: #e3f2fd !important;
+            box-shadow: 0 2px 8px rgba(25, 118, 210, .18);
+        }
+        body.dark-mode .btn {
+            background: #1976d2 !important;
+            color: #fff !important;
+            border: none;
+        }
+        body.dark-mode .btn:hover {
+            background: #26a69a !important;
+            color: #fff !important;
+        }
+        body.dark-mode .news-item.interactive-news:hover {
+            background: #263238 !important;
+            color: #ffd600 !important;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
+
+    <a class="navbar-brand" href="/"><i class="fa-solid fa-graduation-cap"></i> FOSSEE Student Portal</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" 
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <span class="notif-bell" id="notifBell" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa-solid fa-bell"></i>
+        <span class="badge">3</span>
+    </span>
+
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notifBell">
+        <a class="dropdown-item" href="#">Assignment deadline tomorrow!</a>
+        <a class="dropdown-item" href="#">New message from Prof. Rao</a>
+        <a class="dropdown-item" href="#">Workshop registration confirmed</a>
+    </div>
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <!-- Static navigation items -->
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard"><i class="fa-solid fa-house"></i> Dashboard</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/assignments"><i class="fa-solid fa-file-lines"></i> Assignments</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/grades"><i class="fa-solid fa-chart-bar"></i> Grades</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/profile"><i class="fa-solid fa-user"></i> Profile</a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/webinars">Webinars</a>
+                    <a class="dropdown-item" href="/about">About</a>
+                    <a class="dropdown-item" href="/contact">Contact</a>
+                </div>
+            </li>
+        </ul>
+        
+    </div>
+</nav>
+
+<!-- Profile & Progress Row -->
+<div class="profile-row">
+
+    <div class="profile-card">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" width="90" alt="Avatar">
+        <h5 class="mb-1">Harshiv vaish</h5>
+        <p class="mb-2">B.Tech, Computer Science<br>Semester 5</p>
+        <a href="/profile" class="btn btn-outline-primary btn-sm">View Profile</a>
+    </div>
+
+    <div class="progress-card">
+        <h6>Assignment Progress</h6>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <span id="progressLabel">70% Complete</span>
+            <select id="assignmentFilter" class="form-control form-control-sm" style="width:120px;">
+                <option value="all">All</option>
+                <option value="pending">Pending</option>
+                <option value="submitted">Submitted</option>
+            </select>
+        </div>
+
+        <div class="progress mb-3">
+            <div class="progress-bar bg-success" id="progressBar" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
+        </div>
+        <ul class="list-group" id="assignmentList">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Data Structures HW 1
+                <span class="badge badge-success badge-pill">Submitted</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Algorithms HW 2
+                <span class="badge badge-warning badge-pill">Pending
+                    <button class="btn btn-sm btn-outline-success ml-2 mark-submit">Mark as Submitted</button>
+                </span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                DBMS Project
+                <span class="badge badge-success badge-pill">Submitted</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                OS Lab Report
+                <span class="badge badge-warning badge-pill">Pending
+                    <button class="btn btn-sm btn-outline-success ml-2 mark-submit">Mark as Submitted</button>
+                </span>
+            </li>
+        </ul>
+
+        <small id="assignmentCount">2 of 4 assignments submitted</small>
+
+    </div>
+
+    <button class="dark-toggle-btn" id="darkModeToggle" title="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
+    
+</div>
+
+<!-- Quick Links Panel -->
+<div class="container quick-links text-center">
+    <h4 class="mb-3"><i class="fa-solid fa-bolt"></i> Quick Links</h4>
+    <a href="/dashboard" class="btn btn-primary"><i class="fa-solid fa-house"></i> Dashboard</a>
+    <a href="/assignments" class="btn btn-info"><i class="fa-solid fa-file-lines"></i> Assignments</a>
+    <a href="/grades" class="btn btn-success"><i class="fa-solid fa-chart-bar"></i> Grades</a>
+    <a href="/profile" class="btn btn-warning"><i class="fa-solid fa-user"></i> Profile</a>
+    <a href="/calendar" class="btn btn-secondary"><i class="fa-solid fa-calendar-days"></i> Calendar</a>
+    <a href="/messages" class="btn btn-teal" style="background:#26a69a;color:#fff;"><i class="fa-solid fa-envelope"></i> Messages</a>
+</div>
+
+<!-- Main Content -->
+<main class="container">
+    <div class="base-content">
+        <h2>About FOSSEE Workshops</h2>
+        <p>
+            FOSSEE Workshops provide a platform for students and professionals to learn, collaborate, and grow in various domains including engineering, science, and technology. Join us for internships, classes, workshops, and webinars led by industry experts.
+        </p>
+    </div>
+
+    <!-- Announcements -->
+    <div class="announcement-board">
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>Announcement:</strong> Semester results will be published on 25th September.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Update:</strong> New assignments have been uploaded for Data Structures.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Upcoming Events -->
+    <div class="events-board">
+        <h4><i class="fa-solid fa-calendar-days"></i> Upcoming Events</h4>
+        <div id="eventAccordion">
+            <div class="card">
+                <div class="card-header" id="eventOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link event-title" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Python Workshop - Oct 10
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="eventOne" data-parent="#eventAccordion">
+                    <div class="card-body">
+                        Hands-on Python workshop for engineers. <a href="#">Register Here</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="card-header" id="eventTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link event-title collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Cloud Computing Webinar - Oct 15
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="eventTwo" data-parent="#eventAccordion">
+                    <div class="card-body">
+                        Join our webinar on Cloud Computing & DevOps trends. <a href="#">Join Webinar</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- News Board -->
+    <div class="news-board mt-4">
+        <h3><i class="fa-solid fa-newspaper"></i> Latest News</h3>
+
+        <div class="news-item interactive-news" data-title="AI & Data Science Internship" data-detail="Applications are open for our new AI & Data Science internship. Apply now to work on cutting-edge projects!">
+            <strong>New Internship:</strong> AI & Data Science internship applications are open. <a href="#">Apply Now</a>
+        </div>
+
+        <div class="news-item interactive-news" data-title="Python Workshop" data-detail="Python for Engineers workshop starts Oct 10. Register to enhance your programming skills.">
+            <strong>Workshop:</strong> Python for Engineers starting Oct 10. <a href="#">Register Here</a>
+        </div>
+
+        <div class="news-item interactive-news" data-title="Cloud Webinar" data-detail="Join our webinar on Cloud Computing & DevOps trends on Oct 15.">
+            <strong>Webinar:</strong> Cloud Computing & DevOps trends on Oct 15. <a href="#">Join Webinar</a>
+        </div>
+
+    </div>
+
+    <!-- News Modal -->
+    <div class="modal fade" id="newsModal" tabindex="-1" role="dialog" aria-labelledby="newsModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="newsModalLabel"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="newsModalBody"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feedback Button -->
+    <button class="btn btn-info feedback-btn" data-toggle="modal" data-target="#feedbackModal"><i class="fa-solid fa-comment-dots"></i> Give Feedback</button>
+    <!-- Feedback Modal -->
+    <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+
+        <form class="modal-content">
+
+          <div class="modal-header">
+
+            <h5 class="modal-title" id="feedbackModalLabel">Submit Feedback</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+              <span aria-hidden="true">&times;</span>
+            </button>
+
+          </div>
+
+          <div class="modal-body">
+            <textarea class="form-control" rows="4" placeholder="Your feedback..."></textarea>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Send</button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="text-center">
+    <div class="container">
+        <p class="mb-1">&copy; 2025 FOSSEE Student Portal. All rights reserved.</p>
+        <p class="mb-0">
+            <a href="/">Home</a> | 
+            <a href="/about/">About</a> | 
+            <a href="/contact/">Contact</a>
+        </p>
+    </div>
+</footer>
+
+<!-- Scroll Button -->
+<button id="scrollTopBtn" title="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+
+
+</body>
+</html>
+
+
+
