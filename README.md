@@ -1,6 +1,8 @@
 AFTER:-
 <img width="945" height="467" alt="Image" src="https://github.com/user-attachments/assets/22a736a3-7213-44ab-ae4e-d92b66b30c36" />
 <img width="956" height="449" alt="after2" src="https://github.com/user-attachments/assets/921b2c69-2b29-45ad-bfcb-5f0ce2d6040b" />
+<img width="959" height="432" alt="Screenshot 2025-09-21 192218" src="https://github.com/user-attachments/assets/b80884f1-15b8-4cb6-8ba2-590a7a88b078" />
+
 
 BEFORE:-
 <img width="959" height="377" alt="before1" src="https://github.com/user-attachments/assets/0dc709ed-1468-49fa-961a-da052339e33c" />
