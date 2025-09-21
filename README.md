@@ -1,5 +1,5 @@
 AFTER:-
-![image alt] (https://github.com/harshivvaish/fossee-task1/blob/main/after%20dark%20mode.png?raw=true)
+<img width="945" height="467" alt="Image" src="https://github.com/user-attachments/assets/22a736a3-7213-44ab-ae4e-d92b66b30c36" />
 
 # fossee-task1
 in this i have completed first task for fossee internship
