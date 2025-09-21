@@ -517,6 +517,69 @@
       </div>
 
     </div>
+
+    <!-- Interactive My Schedule Widget -->
+    <div class="container mb-4">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <span><i class="fa-solid fa-calendar-check"></i> My Schedule</span>
+                <select id="scheduleDay" class="form-control form-control-sm w-auto">
+                    <option value="today">Today</option>
+                    <option value="tomorrow">Tomorrow</option>
+                </select>
+            </div>
+            <ul class="list-group list-group-flush" id="scheduleList">
+                <li class="list-group-item">
+                    <strong>10:00 AM</strong> - Data Structures Class
+                    <span class="badge badge-success float-right">Upcoming</span>
+                </li>
+                <li class="list-group-item">
+                    <strong>12:30 PM</strong> - Team Meeting
+                    <span class="badge badge-info float-right">Scheduled</span>
+                </li>
+                <li class="list-group-item">
+                    <strong>3:00 PM</strong> - Python Workshop
+                    <span class="badge badge-warning float-right">Reminder</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Interactive schedule widget
+        $('#scheduleDay').on('change', function() {
+            var val = $(this).val();
+            var $list = $('#scheduleList');
+            $list.empty();
+            if(val === 'today') {
+                $list.append(`
+                    <li class="list-group-item">
+                        <strong>10:00 AM</strong> - Data Structures Class
+                        <span class="badge badge-success float-right">Upcoming</span>
+                    </li>
+                    <li class="list-group-item">
+                        <strong>12:30 PM</strong> - Team Meeting
+                        <span class="badge badge-info float-right">Scheduled</span>
+                    </li>
+                    <li class="list-group-item">
+                        <strong>3:00 PM</strong> - Python Workshop
+                        <span class="badge badge-warning float-right">Reminder</span>
+                    </li>
+                `);
+            } else {
+                $list.append(`
+                    <li class="list-group-item">
+                        <strong>11:00 AM</strong> - DBMS Project Discussion
+                        <span class="badge badge-success float-right">Upcoming</span>
+                    </li>
+                    <li class="list-group-item">
+                        <strong>2:00 PM</strong> - Cloud Webinar
+                        <span class="badge badge-info float-right">Scheduled</span>
+                    </li>
+                `);
+            }
+        });
+    </script>
 </main>
 
 <!-- Footer -->
